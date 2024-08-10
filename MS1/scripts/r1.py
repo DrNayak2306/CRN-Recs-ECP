@@ -14,19 +14,13 @@ from coppeliasim_zmqremoteapi_client import RemoteAPIClient
 
 ################################ MAIN FUNCTION #######################################
 
-def velocity_calculator(radius, v2):
-    width = 0.104
-    velocity = v2 * (2*radius/width - 1) / (2*radius/width + 1)
-    return -velocity
-
 def simulator(sim):
     r_joint = sim.getObject("/crn_bot/joint_r")
     bot = sim.getObject("/crn_bot")
     l_joint = sim.getObject("/crn_bot/joint_l")
-    wheel_radius = 0.09483 / 2
     sim.setObjectPosition(bot,[-1.225, 1.0, 0.00096])
-    v_r = 150 # 11.093535801 rad/s 0.1655096439 m/s
-    v_l = -1 # 9.996836444 rad/s 0.0165509644 m/s
+    v_r = 150 
+    v_l = -1 
     curY = sim.getObjectPosition(bot)[1]
     sim.setJointTargetVelocity(r_joint, v_r);
     sim.setJointTargetVelocity(l_joint, v_l);
