@@ -1,0 +1,95 @@
+import  sys
+import traceback
+import time
+import math
+from coppeliasim_zmqremoteapi_client import RemoteAPIClient
+
+############################## GLOBAL VARIABLES ######################################
+
+
+
+############################ USER DEFINED FUNCTIONS ##################################
+
+
+
+################################ MAIN FUNCTION #######################################
+
+def velocity_calculator(radius, v2):
+    width = 0.104
+    velocity = v2 * (2*radius/width - 1) / (2*radius/width + 1)
+    return -velocity
+
+def simulator(sim):
+    r_joint = sim.getObject("/crn_bot/joint_r")
+    bot = sim.getObject("/crn_bot")
+    l_joint = sim.getObject("/crn_bot/joint_l")
+    wheel_radius = 0.09483 / 2
+    sim.setObjectPosition(bot,[-1.225, 1.0, 0.00096])
+    v_r = 185 # 11.093535801 rad/s 0.1655096439 m/s
+    v_l = -20 # 9.996836444 rad/s 0.0165509644 m/s
+    curY = sim.getObjectPosition(bot)[1]
+    sim.setJointTargetVelocity(r_joint, v_r);
+    sim.setJointTargetVelocity(l_joint, v_l);
+	
+    return None
+	
+######### YOU ARE NOT ALLOWED TO MAKE CHANGES TO THE MAIN CODE BELOW #########
+
+if __name__ == "__main__":
+    client = RemoteAPIClient()
+    sim = client.getObject('sim')
+
+    try:
+
+    ## Start the simulation using ZeroMQ RemoteAPI
+        try:
+            return_code = sim.startSimulation()
+            if sim.getSimulationState() != sim.simulation_stopped:
+                print('\nSimulation started correctly in CoppeliaSim.')
+            else:
+                print('\nSimulation could not be started correctly in CoppeliaSim.')
+                sys.exit()
+
+        except Exception:
+            print('\n[ERROR] Simulation could not be started !!')
+            traceback.print_exc(file=sys.stdout)
+            sys.exit()
+
+        ## Runs the robot navigation logic written by participants
+        try:
+            simulator(sim)
+            time.sleep(5)
+
+        except Exception:
+            print('\n[ERROR] Your simulator function throwed an Exception, kindly debug your code!')
+            print('Stop the CoppeliaSim simulation manually if required.\n')
+            traceback.print_exc(file=sys.stdout)
+            print()
+            sys.exit()
+
+
+        ## Stop the simulation using ZeroMQ RemoteAPI
+        try:
+            return_code = sim.stopSimulation()
+            time.sleep(0.5)
+            if sim.getSimulationState() == sim.simulation_stopped:
+                print('\nSimulation stopped correctly in CoppeliaSim.')
+            else:
+                print('\nSimulation could not be stopped correctly in CoppeliaSim.')
+                sys.exit()
+
+        except Exception:
+            print('\n[ERROR] Simulation could not be stopped !!')
+            traceback.print_exc(file=sys.stdout)
+            sys.exit()
+
+    except KeyboardInterrupt:
+    ## Stop the simulation using ZeroMQ RemoteAPI
+        return_code = sim.stopSimulation()
+        time.sleep(0.5)
+        if sim.getSimulationState() == sim.simulation_stopped:
+            print('\nSimulation interrupted by user in CoppeliaSim.')
+        else:
+            print('\nSimulation could not be interrupted. Stop the simulation manually .')
+        sys.exit()
+
