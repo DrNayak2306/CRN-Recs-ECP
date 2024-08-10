@@ -1,6 +1,0 @@
-#!/bin/bash
-
-PATH=$HOME/CoppeliaSim/CSD_Robocon_2024-25/MS1/scripts
-echo $PATH
-for i in {1..3}; do /usr/bin/python3 $PATH/r$i.py; done
-
