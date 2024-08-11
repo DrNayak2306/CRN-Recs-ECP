@@ -15,13 +15,14 @@ from coppeliasim_zmqremoteapi_client import RemoteAPIClient
 ################################ MAIN FUNCTION #######################################
 
 def simulator(sim):
-    bot = sim.getObject("/crn_bot")
-    r_joint = sim.getObject("/crn_bot/joint_r")
-    l_joint = sim.getObject("/crn_bot/joint_l")
-    v_r = 185
-    v_l = -20
-    sim.setJointTargetVelocity(r_joint, v_r);
-    sim.setJointTargetVelocity(l_joint, v_l);
+    bot = sim.getObject("/crn_bot") # Get the bot handle
+    r_joint = sim.getObject("/crn_bot/joint_r") # Get right joint handle
+    l_joint = sim.getObject("/crn_bot/joint_l") # Get left joint handle
+    sim.setObjectPosition(bot,[-1.225, 1.0, 0.00096]) # Initialize the position of the bot to a more spacious location
+    v_r = 185 # Define right motor velocity
+    v_l = -20 # Define left motor velocity
+    sim.setJointTargetVelocity(r_joint, v_r); # Set right motor target velocity
+    sim.setJointTargetVelocity(l_joint, v_l); # Set left motor target velocity
 	
     return None
 	
