@@ -99,7 +99,6 @@ def simulator(sim):
 
     #### Set required kinematic action ####
     v_r, v_l = 30, -20 
-    sim.setObjectPosition(bot,[-1.225, 1.0, 0.00096])
     sim.setJointTargetVelocity(r_motor, v_r);
     sim.setJointTargetVelocity(l_motor, v_l);
     
