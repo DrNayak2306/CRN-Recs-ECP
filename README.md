@@ -22,6 +22,7 @@ Here's the logic I would go ahead with given about a day or so more:
   2. The robot has its own orientation: o1, given from the AruCo tracking system; and the orientation needed to reach the next waypoint: o2, calculated from the list of waypoints.
   3. The robot utilizes PID or a similar damping error correction system to match o1 with o2 while commuting.
   4. Upon reaching the waypoint (within a given tolerance vicinity), o2 is updated and we go to step 3, except when the waypoint is the goal.
+     
 The error correction system has some detail to it, which I couldn't manage implementing due to shortage of time.
 
 ![Milestone-3 Demo](https://github.com/user-attachments/assets/a976de8d-8ec2-4e07-85e4-148a2a70fed6)
