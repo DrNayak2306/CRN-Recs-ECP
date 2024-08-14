@@ -8,7 +8,7 @@
 
 Axes:
 
-![feed](https://github.com/user-attachments/assets/837b01c3-3528-4383-88e6-d1df75b80423 | width=200)
+<img src="https://github.com/user-attachments/assets/837b01c3-3528-4383-88e6-d1df75b80423" width=200 height=200>
 
 Orientation is 0 deg when the bot is exactly opposite of the default starting orientation, thus starting orientation is 180 deg. Angle increases upon rotating clockwise.
 
