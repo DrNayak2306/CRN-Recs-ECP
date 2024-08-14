@@ -8,9 +8,9 @@
 
 Axes:
 
-![feed](https://github.com/user-attachments/assets/837b01c3-3528-4383-88e6-d1df75b80423)
+![feed](https://github.com/user-attachments/assets/837b01c3-3528-4383-88e6-d1df75b80423 | width=200)
 
 Orientation is 0 deg when the bot is exactly opposite of the default starting orientation, thus starting orientation is 180 deg. Angle increases upon rotating clockwise.
 
-![Milestone-2 Demo](https://github.com/user-attachments/assets/6d9a0c07-bbbd-42df-8d13-bfbfca539fdb | width=200)
+![Milestone-2 Demo](https://github.com/user-attachments/assets/6d9a0c07-bbbd-42df-8d13-bfbfca539fdb)
 
