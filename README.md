@@ -2,8 +2,7 @@
 
 ## Milestone-1 
 
-![Milestone-1 Demo](https://github.com/DrNayak2306/CRN-Recs-ECP/blob/main/MS1/Demo.mp4)
-
+![Milestone-1 Demo](https://github.com/user-attachments/assets/b3de9f7a-c8dd-4124-900d-aa3617484c55)
 
 ## Milestone-2 
 
