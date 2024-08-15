@@ -41,7 +41,10 @@ The error correction system has some detail to it, which I couldn't manage imple
 1. I finally got the control system figured out. It is a p-system, and uses only proportionality for error correction.
 2. Orientation system has been changed. Now starting orientation is 90 degrees, 0 degrees being bot facing way point 2 from way point 1. 
 
-![Milestone-3 New Demo](https://github.com/user-attachments/assets/caf64907-7bcd-4261-a56d-df76c8ac29aa)
+![Milestone-3 New Demo](https://github.com/user-attachments/assets/592b2352-0c64-4515-8e7c-0455fb7cff42)
+
+
+
 
 
 
