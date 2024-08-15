@@ -1,5 +1,15 @@
 # CRN-Recs-ECP
 
+## Introduction:
+
+This is a set of three tasks, given for the purpose of recruitment to CSD Robocon NITK.
+1. Milestone-1: Make the bot move in circles of three random radii.
+2. Milestone-2: Implement localization without using API functions ```getObjectPosition()``` and ```getObjectOrientation()```.
+3. Milestone-3: Implement control system and navigate through the waypoints.
+
+This project uses openCV-python to analyze the visual sensor data, and determine the position, orientation and thus path progress of the bot.
+With the locations of the waypoints fed to the bot, it uses p-system or proportionality system with angular error to orient itself towards the next waypoint.
+
 ## Milestone-1 
 
 ![Milestone-1 Demo](https://github.com/user-attachments/assets/b3de9f7a-c8dd-4124-900d-aa3617484c55)
