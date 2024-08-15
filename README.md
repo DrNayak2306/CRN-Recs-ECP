@@ -31,7 +31,7 @@ The error correction system has some detail to it, which I couldn't manage imple
 
 I finally got the control system figured out. It is a p-system, and uses only proportionality for error correction.
 
-![Milestone-3 New Demo](https://github.com/user-attachments/assets/a976de8d-8ec2-4e07-85e4-148a2a70fed6)
+![Milestone-3 New Demo](https://github.com/user-attachments/assets/caf64907-7bcd-4261-a56d-df76c8ac29aa)
 
 
 
