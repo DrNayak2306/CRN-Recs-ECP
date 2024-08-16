@@ -16,16 +16,15 @@ SPEED_LOW = 4
 SPEED_HIGH = SPEED_LOW + 6.8 
 GOAL_REACHED = False
 
-top_left, bottom_left = (0,10),(0,-10)
-v_r, v_l = SPEED_LOW, -SPEED_LOW
-position = (0,0)
-angle = 0
-sense, dtheta = 0, 0
-o1, o2 = (), ()
+top_left, bottom_left = (0,10),(0,-10) # Top-left and top-right coordinates of the bot: INITIALIZED AS PER STARTING CONDITION
+v_r, v_l = SPEED_LOW, -SPEED_LOW # Right and left wheel velocities
+position = (204,190) # Position of the bot: INITIALIZED AS PER STARTING CONDITION
+angle = 90 # Orientation of the bot: INITIALIZED AS PER STARTING CONDITION
+sense, dtheta = 0, 0 # Turning sense and deviation from required trajectory
+o1, o2 = (), () # Orientation of the bot and required orientation
 way_points = [(802,926),(102,926),(102,715),(920,720),(920, 107),(613,100),(607,400),(197,415)] # Length of an edge: 100 units
 way_points_reached = []
-old_point = (197,0) 
-start_time = 0
+old_point = (197,0) # Waypoint previously crossed
 
 ############################ USER DEFINED FUNCTIONS ##################################
 
@@ -101,12 +100,12 @@ def display_processed_feed(frame, text):
     orientation_pos = (210, 25)
     wp_pos = (20, 75)
     progress_pos = (210, 75)
-    cv.putText(frame, "Position",position_pos, cv.FONT_HERSHEY_SIMPLEX,0.5, (0, 0, 0), 2) 
-    cv.putText(frame, str(text),(position_pos[0], position_pos[1]+20), cv.FONT_HERSHEY_SIMPLEX,0.5, (0, 0, 255), 2) # Display the real time position on the feed
-    cv.putText(frame, "Orientation",orientation_pos, cv.FONT_HERSHEY_SIMPLEX,0.5, (0, 0, 0), 2) 
-    cv.putText(frame, str(round(angle,2)),(orientation_pos[0], orientation_pos[1]+20), cv.FONT_HERSHEY_SIMPLEX,0.5, (0, 255, 255), 2) # Display the real time orientation on the feed
-    cv.putText(frame, "Waypoints reached",wp_pos, cv.FONT_HERSHEY_SIMPLEX,0.5, (0, 0, 0), 2) # Display the real time orientation on the feed
-    cv.putText(frame, str(len(way_points_reached)),(wp_pos[0], wp_pos[1]+20), cv.FONT_HERSHEY_SIMPLEX,0.5, (155, 0, 255), 2) # Display the real time orientation on the feed
+    cv.putText(frame, "Position",position_pos, cv.FONT_HERSHEY_SIMPLEX,0.5, (0, 0, 0), 2) # Display the real time position on the feed
+    cv.putText(frame, str(text),(position_pos[0], position_pos[1]+20), cv.FONT_HERSHEY_SIMPLEX,0.5, (0, 0, 255), 2)
+    cv.putText(frame, "Orientation",orientation_pos, cv.FONT_HERSHEY_SIMPLEX,0.5, (0, 0, 0), 2) # Display the real time orientation on the feed
+    cv.putText(frame, str(round(angle,2)),(orientation_pos[0], orientation_pos[1]+20), cv.FONT_HERSHEY_SIMPLEX,0.5, (0, 255, 255), 2) 
+    cv.putText(frame, "Waypoints reached",wp_pos, cv.FONT_HERSHEY_SIMPLEX,0.5, (0, 0, 0), 2) # Display the waypoints reached count on the feed
+    cv.putText(frame, str(len(way_points_reached)),(wp_pos[0], wp_pos[1]+20), cv.FONT_HERSHEY_SIMPLEX,0.5, (155, 0, 255), 2) 
     cv.putText(frame, "Progress",progress_pos, cv.FONT_HERSHEY_SIMPLEX,0.5, (0, 0, 0), 2) # Display the real time orientation on the feed
     message = ""
     if GOAL_REACHED:
@@ -121,16 +120,6 @@ def display_processed_feed(frame, text):
     key = cv.waitKey(1)
     if key == ord("q"):
         cv.destroyAllWindows()
-
-def scan_map():
-    global position, angle, old_point
-
-def name_components(sim):
-    #### Define handles ####
-    bot = sim.getObject("/crn_bot")
-    r_motor = sim.getObject("/crn_bot/joint_r")
-    l_motor = sim.getObject("/crn_bot/joint_l")
-    vision_sensor = sim.getObjectHandle("/vision_sensor")
 
 def navigation(way_points):
     global way_points_reached, v_r, v_l, old_point
@@ -182,8 +171,7 @@ def navigation(way_points):
 
 def simulator(sim):
     global v_r, v_l, old_point
-
-    name_components(sim)
+    
     #### Define handles ####
     bot = sim.getObject("/crn_bot")
     r_motor = sim.getObject("/crn_bot/joint_r")
@@ -197,8 +185,6 @@ def simulator(sim):
     #### Vision sensor image processing loop (mainloop) ####
     while sim.getSimulationState != sim.simulation_stopped:
         if GOAL_REACHED:
-            sim.setJointTargetVelocity(r_motor, -(v_r/2));
-            sim.setJointTargetVelocity(l_motor, -(v_l/2));
             return
 
         #sim.setObjectPosition(bot,[-1.225, 1.0, 0.00096]) # Debug
